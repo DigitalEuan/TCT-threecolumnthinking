@@ -1,0 +1,68 @@
+========================================================================
+DECISION A — edge-inference matmul engine (N=1024, 32-bit effective)
+========================================================================
+[8-bit, 1 pass(es)]
+  analog total   = 9674752 units   (1·(2·1024² + 7400·1024))
+  in-memory total= 144703488 units   von Neumann total = 13461618688 units
+  in-memory / analog = 17664/1181 = 14.96× fewer units
+  vonNeumann / analog= 1643264/1181 = 1391.42× fewer units
+[32-bit, 4 pass(es)]
+  analog total   = 38699008 units   (4·(2·1024² + 7400·1024))
+  in-memory total= 144703488 units   von Neumann total = 13461618688 units
+  in-memory / analog = 4416/1181 = 3.74× fewer units
+  vonNeumann / analog= 410816/1181 = 347.85× fewer units
+  break-even vs in-memory: N > 2960/13 → N ≥ 228 (32-bit); N=1024 clears it
+  verdict: CROSSBAR WINS at N=1024 — 3.7× vs in-memory, 348× vs von Neumann (32-bit);
+           15× vs in-memory at 8-bit. Caveat: converters dominate below N=228;
+           precision via bit-slicing (H7); model constants illustrative (carried as axioms).
+
+========================================================================
+DECISION B — real-time 4K convolution pipeline (fixed kernel, 60 fps)
+========================================================================
+[kernel re-learned every 10 s @60fps: T=600]  optical 1663576 ops vs FFT 30720000 ops
+   → OPTICAL WINS: 3840000/207947 = 18.47× fewer total ops; per-frame 2048/41 = 49.95×
+[adapted filter, per frame: T=1]  optical 1049601 ops vs FFT 51200 ops
+   → FFT WINS: optical costs 1049601/51200 = 20.50× more
+  break-even reuse T* = ceil(1048576/50175) = 21
+  verdict: STATIC-KERNEL PIPELINES ONLY — T=600 (re-learned every 10 s) wins 18.5×;
+           per-frame adaptation (T=1) loses 20.5×. The gain is amortization (H8),
+           not raw compute — exactly the crossover the study measured.
+
+========================================================================
+DECISION C — Monte-Carlo Bernoulli estimates at 1% error
+========================================================================
+  ε=1/10: N ≥ 25 noise bits per estimate (Chebyshev, two paths agree)
+  ε=1/100: N ≥ 2500 noise bits per estimate (Chebyshev, two paths agree)
+  ε=1/1000: N ≥ 250000 noise bits per estimate (Chebyshev, two paths agree)
+  one stochastic multiply at 1% = 2500 AND-units vs 37-unit FP multiply
+   → 2500/37 = 67.57× MORE energy per multiply
+  verdict: USE PHYSICAL NOISE AS A RANDOMNESS SOURCE (free Bernoulli stream, H4),
+           NOT as an arithmetic engine — at 1% error the bit-serial multiply pays
+           67.57× per operation. Verdict inherits the Chebyshev
+           bound's pessimism (exact binomial tail at N=100 is far smaller).
+
+========================================================================
+DECISION D — analog co-processor for ODE integration
+========================================================================
+  accuracy 1/1000: digital Euler needs M = 1500 steps; analog floor reaches it: 1500 digital Euler steps : 1 analog evolution
+  accuracy 1/1000000: digital Euler needs M = 1500000 steps; analog floor 1/1000 CANNOT reach it — digital mandatory
+  verdict: MATCH THE FLOOR — demand 1/10³ buys the full 1500:1 step ratio;
+           demand 1/10⁶ (M = 1500000) exceeds the analog floor and the
+           isomorphism is OFF at that accuracy. Continuous time (H5) is a
+           bounded-accuracy win, not an infinite one.
+
+========================================================================
+DECISION E — 'buy an Ising annealer to solve SAT faster?' (guardrail)
+========================================================================
+  premises: SAT→Ising mapping exact (EQUIVALENCE=1 on all 8 assignments);
+            gadget overhead measured (16 slots, 6 surviving cubic terms);
+            extended Church-Turing carried as an AXIOM (not derived).
+  VERDICT: REFUSED — WOULD_BE_GUESS for any superlinear speedup claim.
+  What the isomorphism DOES license: massive parallel energy evaluation
+  (constant-factor, problem-size-dependent constants), and an exact
+  encoding whose overhead is itself measured (6 cubic terms = the
+  quadratic-hardware tax). Structure-preserving maps preserve hardness;
+  the quantum case remains explicitly open and unclaimed.
+
+UBP: all decisions computed in Fraction/int; floats appear only in
+approx() display strings, never in a comparison.

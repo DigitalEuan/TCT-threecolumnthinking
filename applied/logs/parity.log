@@ -1,0 +1,50 @@
+# Parity test — HTML JS engine vs Python decision engine
+# cases: 45 (A:23 B:8 C:5 D:6 E:3)   date: 2026-11-01
+
+OK   A:16:8         verdict=DIGITAL {'analog': 118912}
+OK   A:55:8         verdict=CROSSBAR {'analog': 413050}
+OK   A:56:8         verdict=CROSSBAR {'analog': 420672}
+OK   A:100:16       verdict=DIGITAL {'analog': 1520000}
+OK   A:111:16       verdict=CROSSBAR {'analog': 1692084}
+OK   A:228:32       verdict=CROSSBAR {'analog': 7164672}
+OK   A:229:32       verdict=CROSSBAR {'analog': 7197928}
+OK   A:512:8        verdict=CROSSBAR {'analog': 4313088}
+OK   A:512:32       verdict=CROSSBAR {'analog': 17252352}
+OK   A:1024:8       verdict=CROSSBAR {'analog': 9674752}
+OK   A:1024:16      verdict=CROSSBAR {'analog': 19349504}
+OK   A:1024:32      verdict=CROSSBAR {'analog': 38699008}
+OK   A:2048:32      verdict=CROSSBAR {'analog': 94175232}
+OK   A:4096:8       verdict=CROSSBAR {'analog': 63864832}
+OK   A:4096:32      verdict=CROSSBAR {'analog': 255459328}
+OK   A:8:8          verdict=DIGITAL {'analog': 59328}
+OK   A:8:32         verdict=DIGITAL {'analog': 237312}
+OK   A:1:8          verdict=DIGITAL {'analog': 7402}
+OK   A:128:8        verdict=CROSSBAR {'analog': 979968}
+OK   A:128:16       verdict=CROSSBAR {'analog': 1959936}
+OK   A:128:32       verdict=DIGITAL {'analog': 3919872}
+OK   A:55:32        verdict=DIGITAL {'analog': 1652200}
+OK   A:228:8        verdict=CROSSBAR {'analog': 1791168}
+OK   B:1            verdict=FFT {'opt': 1049601}
+OK   B:2            verdict=FFT {'opt': 1050626}
+OK   B:10           verdict=FFT {'opt': 1058826}
+OK   B:20           verdict=FFT {'opt': 1069076}
+OK   B:21           verdict=OPTICAL {'opt': 1070101}
+OK   B:22           verdict=OPTICAL {'opt': 1071126}
+OK   B:100          verdict=OPTICAL {'opt': 1151076}
+OK   B:600          verdict=OPTICAL {'opt': 1663576}
+OK   C:10           verdict=SOURCE_NOT_ENGINE {'bits': 25}
+OK   C:50           verdict=SOURCE_NOT_ENGINE {'bits': 625}
+OK   C:100          verdict=SOURCE_NOT_ENGINE {'bits': 2500}
+OK   C:500          verdict=SOURCE_NOT_ENGINE {'bits': 62500}
+OK   C:1000         verdict=SOURCE_NOT_ENGINE {'bits': 250000}
+OK   D:1            verdict=ANALOG {'M': 1}
+OK   D:37           verdict=ANALOG {'M': 56}
+OK   D:100          verdict=ANALOG {'M': 150}
+OK   D:1000         verdict=ANALOG {'M': 1500}
+OK   D:10000        verdict=DIGITAL_ONLY {'M': 15000}
+OK   D:1000000      verdict=DIGITAL_ONLY {'M': 1500000}
+OK   E:speedup      verdict=REFUSED 
+OK   E:parallel     verdict=GRANTED_WITH_CAVEAT 
+OK   E:encoding     verdict=GRANTED 
+
+RESULT: 45/45 cases match exactly — PARITY CONFIRMED
