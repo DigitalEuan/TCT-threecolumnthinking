@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physical Substrate Selector — from the physical-isomorphisms TCT study</title>
+<style>
+  :root{
+    --ink:#1F2937; --muted:#6B7280; --faint:#9CA3AF;
+    --bg:#F8FAFC; --card:#FFFFFF; --line:#E5E7EB; --soft:#F1F5F9;
+    --win-bg:#F0FDF4; --win-tx:#047857; --win-bd:#A7F3D0;
+    --cond-bg:#FFF7ED; --cond-tx:#B45309; --cond-bd:#FDE68A;
+    --ref-bg:#FEF2F2; --ref-tx:#B91C1C; --ref-bd:#FECACA;
+    --accent:#0077BB;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.625 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
+  main{max-width:960px;margin:0 auto;padding:28px 20px 40px}
+  header{margin-bottom:22px}
+  h1{font-size:24px;line-height:1.3;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:13.5px;max-width:70ch}
+  .prov{margin-top:8px;font-size:12.5px;color:var(--faint)}
+  section.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+       padding:18px 20px;margin:16px 0}
+  h2{font-size:16.5px;margin:0 0 4px;display:flex;align-items:baseline;gap:8px}
+  h2 .tag{font-size:11px;font-weight:600;color:var(--accent);
+       border:1px solid var(--line);border-radius:999px;padding:1px 8px;background:var(--soft)}
+  .desc{color:var(--muted);font-size:13px;margin:0 0 12px}
+  .controls{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:12px}
+  .field{display:flex;flex-direction:column;gap:4px}
+  .field label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  input[type=number],select{font:inherit;font-size:14px;padding:6px 8px;width:130px;
+       border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+  input[type=number]:focus,select:focus{outline:2px solid #BFDBFE;border-color:#93C5FD}
+  .verdict{display:inline-flex;align-items:center;gap:8px;border-radius:8px;
+       padding:7px 12px;font-weight:600;font-size:14px;border:1px solid}
+  .v-win{background:var(--win-bg);color:var(--win-tx);border-color:var(--win-bd)}
+  .v-cond{background:var(--cond-bg);color:var(--cond-tx);border-color:var(--cond-bd)}
+  .v-ref{background:var(--ref-bg);color:var(--ref-tx);border-color:var(--ref-bd)}
+  .out{margin-top:12px;font-variant-numeric:tabular-nums;font-size:14px}
+  .out table{border-collapse:collapse;margin:8px 0 4px}
+  .out td,.out th{padding:4px 14px 4px 0;text-align:left;font-size:13.5px;vertical-align:top}
+  .out th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+  .num{font-variant-numeric:tabular-nums}
+  .approx{color:var(--faint);font-size:12.5px}
+  .caveat{margin-top:10px;padding:9px 12px;background:var(--soft);border-radius:7px;
+       font-size:13px;color:var(--muted)}
+  .caveat b{color:var(--ink)}
+  details{margin-top:8px}
+  summary{cursor:pointer;font-size:13px;color:var(--muted)}
+  .premises{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+  .premises th,.premises td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .premises th{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  .status{display:inline-block;border-radius:999px;padding:0 8px;font-size:11.5px;border:1px solid}
+  .s-emp{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}
+  .s-ill{background:#FFF7ED;color:#B45309;border-color:#FDE68A}
+  .s-der{background:#F0FDF4;color:#047857;border-color:#A7F3D0}
+  .s-ax{background:#F5F3FF;color:#6D28D9;border-color:#DDD6FE}
+  footer{margin-top:20px;color:var(--faint);font-size:12.5px}
+  code{background:var(--soft);border-radius:4px;padding:0 4px;font-size:.92em}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Physical Substrate Selector</h1>
+  <p class="sub">Enter a workload; get the substrate verdict of the
+  <em>physical-isomorphisms</em> TCT study — computed exactly, in integer
+  arithmetic, with each verdict's crossover location and inherited caveat
+  attached. Comparisons are exact (cross-multiplied integers); the
+  “≈” values are display-only decimals.</p>
+  <p class="prov">Built from <code>case_studies/physical-isomorphisms-tct</code>
+  (scripts 01–06, premises re-verified live 2026-11-01). Engine parity-tested
+  against the Python reference on 45 parameter sets.</p>
+</header>
+
+<!-- ══════════ A · matmul ══════════ -->
+<section class="card" id="panel-a">
+  <h2><span class="tag">A</span> Matrix–vector engine — crossbar vs digital</h2>
+  <p class="desc">Analog crossbar (Kirchhoff current summing) against in-memory
+  and von-Neumann digital, per the study's energy model (units of 0.1&nbsp;pJ).
+  Precision beyond 8 bits is bit-sliced into passes.</p>
+  <div class="controls">
+    <div class="field"><label for="a-n">matrix size N</label>
+      <input type="number" id="a-n" min="1" max="8192" value="1024"></div>
+    <div class="field"><label for="a-bits">effective precision</label>
+      <select id="a-bits"><option value="8">8-bit (1 pass)</option>
+      <option value="16">16-bit (2 passes)</option>
+      <option value="32" selected>32-bit (4 passes)</option></select></div>
+  </div>
+  <div class="out" id="a-out"></div>
+</section>
+
+<!-- ══════════ B · convolution ══════════ -->
+<section class="card" id="panel-b">
+  <h2><span class="tag">B</span> Convolution pipeline — optical 4f vs FFT</h2>
+  <p class="desc">A 4f optical correlator computes a convolution in one
+  propagation step after an N² kernel-programming setup (N = 1024 in the
+  study's model). The verdict turns on how many frames reuse one kernel.</p>
+  <div class="controls">
+    <div class="field"><label for="b-fps">frame rate (fps)</label>
+      <input type="number" id="b-fps" min="1" max="1000" value="60"></div>
+    <div class="field"><label for="b-sec">seconds between kernel rewrites</label>
+      <input type="number" id="b-sec" min="0.0167" step="0.0167" value="10"></div>
+  </div>
+  <div class="out" id="b-out"></div>
+</section>
+
+<!-- ══════════ C · sampling ══════════ -->
+<section class="card" id="panel-c">
+  <h2><span class="tag">C</span> Bernoulli sampling — physical noise vs digital</h2>
+  <p class="desc">A noisy bit is a free Bernoulli sample. Stream length for an
+  error target ε is Chebyshev's N ≥ p(1−p)/ε² at p = ½; the honest tax is the
+  bit-serial arithmetic that consumes the stream.</p>
+  <div class="controls">
+    <div class="field"><label for="c-k">error tolerance ε = 1/k</label>
+      <select id="c-k"><option value="10">1/10</option><option value="100" selected>1/100</option>
+      <option value="1000">1/1000</option></select></div>
+  </div>
+  <div class="out" id="c-out"></div>
+</section>
+
+<!-- ══════════ D · ODE ══════════ -->
+<section class="card" id="panel-d">
+  <h2><span class="tag">D</span> ODE integration — analog evolution vs Euler steps</h2>
+  <p class="desc">Continuous time replaces sequential steps, but only down to
+  the analog error floor (declared 1/1000 in the study's model). Demand more
+  accuracy than the floor and the isomorphism switches off.</p>
+  <div class="controls">
+    <div class="field"><label for="d-k">accuracy target 1/k</label>
+      <select id="d-k"><option value="100">1/100</option><option value="1000" selected>1/1000</option>
+      <option value="10000">1/10000</option><option value="1000000">1/1,000,000</option></select></div>
+  </div>
+  <div class="out" id="d-out"></div>
+</section>
+
+<!-- ══════════ E · Ising guardrail ══════════ -->
+<section class="card" id="panel-e">
+  <h2><span class="tag">E</span> SAT → Ising — what you may claim</h2>
+  <p class="desc">The mapping is exact (verified on every assignment of the
+  study's witness instance). Structure-preserving maps preserve hardness —
+  select the claim you want to make and the selector will grant or refuse it.</p>
+  <div class="controls">
+    <div class="field"><label for="e-claim">the claim</label>
+      <select id="e-claim">
+        <option value="speedup">“The annealer solves SAT asymptotically faster.”</option>
+        <option value="parallel">“It evaluates the search space massively in parallel.”</option>
+        <option value="encoding">“It encodes our SAT instance exactly.”</option>
+      </select></div>
+  </div>
+  <div class="out" id="e-out"></div>
+</section>
+
+<!-- ══════════ premises ══════════ -->
+<section class="card">
+  <h2>Premises — and their epistemic status</h2>
+  <p class="desc">Every verdict above is only as strong as the premises it
+  inherits. The status column is the study's own split: empirical constants
+  measured by the literature, illustrative values declared by the study's
+  model, exact derivations, and one axiom carried on faith.</p>
+  <table class="premises">
+    <tr><th>Premise</th><th>Value</th><th>Source</th><th>Status</th></tr>
+    <tr><td>Per-MAC energy, von Neumann</td><td class="num">12838 units (0.1 pJ)</td><td>script 01 / Horowitz 2014</td><td><span class="status s-emp">empirical</span></td></tr>
+    <tr><td>Per-MAC energy, in-memory</td><td class="num">138 units</td><td>script 01 / Horowitz 2014</td><td><span class="status s-emp">empirical</span></td></tr>
+    <tr><td>Crossbar cell / converter</td><td class="num">2 / 3700 units</td><td>script 01</td><td><span class="status s-ill">illustrative</span></td></tr>
+    <tr><td>Optical setup / per-frame / FFT</td><td class="num">1048576 / 1025 / 51200 ops</td><td>script 02</td><td><span class="status s-der">derived / illustrative</span></td></tr>
+    <tr><td>Chebyshev stream length</td><td class="num">N ≥ p(1−p)/ε²</td><td>script 03</td><td><span class="status s-der">derived (theorem)</span></td></tr>
+    <tr><td>AND gate vs FP multiply</td><td class="num">1 vs 37 units</td><td>script 03</td><td><span class="status s-emp">empirical</span></td></tr>
+    <tr><td>Analog error floor</td><td class="num">1/1000</td><td>script 04</td><td><span class="status s-ill">illustrative</span></td></tr>
+    <tr><td>Euler error</td><td class="num">(3M−1)/2M²</td><td>script 04</td><td><span class="status s-der">derived</span></td></tr>
+    <tr><td>SAT→Ising equivalence</td><td class="num">exact, 8/8 assignments</td><td>script 06</td><td><span class="status s-der">derived</span></td></tr>
+    <tr><td>Extended Church–Turing</td><td>—</td><td>Lean ledger</td><td><span class="status s-ax">axiom</span></td></tr>
+  </table>
+</section>
+
+<footer>
+  All comparisons computed in exact integer arithmetic (cross-multiplied);
+  decimal strings are display-only. Verdict logic extracted and parity-tested
+  under Node against <code>scripts/tct_applied_decisions.py</code> on 45
+  parameter sets — <code>tct_applied/parity.log</code>. Static page: no
+  network, no build, everything inline.
+</footer>
+</main>
+
+<script>
+/*ENGINE-START*/
+// ── TCT substrate-selector engine ─────────────────────────────────
+// Exact integer arithmetic only: every comparison below is done on
+// integers (cross-multiplied rationals). Floats are never used in a
+// decision. Premises: physical-isomorphisms-tct scripts 01-06.
+function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a || 1; }
+function reduce(a, b) { var g = gcd(a, b); return [a / g, b / g]; }
+
+var PREM = {
+  MULT: 37, ADD: 1, SRAM: 50, DRAM: 6400,          // empirical (Horowitz 2014)
+  CELL: 2, CONV: 3700,                              // illustrative
+  PER_MAC_VN: 37 + 1 + 2 * 6400,                    // 12838
+  PER_MAC_INMEM: 37 + 1 + 2 * 50,                   // 138
+  N_CONV: 1024, LOG2: 10,
+  FFT_PER_FRAME: 5 * 1024 * 10,                     // 51200
+  OPT_SETUP: 1024 * 1024,                           // 1048576
+  OPT_PER_FRAME: 1024 + 1,                          // 1025
+  ANALOG_FLOOR_K: 1000                              // 1/1000
+};
+
+// A — matmul: returns exact totals + verdict from integer comparison.
+function decideA(N, bits) {
+  N = Math.max(1, Math.floor(N));
+  var passes = Math.max(1, Math.floor(bits / 8));
+  var analog = passes * (PREM.CELL * N * N + 2 * N * PREM.CONV);
+  var inmem = PREM.PER_MAC_INMEM * N * N;
+  var vn = PREM.PER_MAC_VN * N * N;
+  // break-even: smallest N with passes*(2N^2+7400N) < 138N^2
+  //   <=> N > 7400*passes / (138 - 2*passes)
+  var denom = 138 - 2 * passes;
+  var beN = (denom > 0) ? Math.floor(PREM.CONV * 2 * passes / denom) + 1 : Infinity;
+  var wins = analog < inmem;                        // integer comparison
+  var rIn = reduce(inmem, analog), rVn = reduce(vn, analog);
+  return {
+    N: N, passes: passes, analog: analog, inmem: inmem, vn: vn,
+    ratioInmem: rIn, ratioVn: rVn, breakEven: beN,
+    verdict: wins ? "CROSSBAR" : "DIGITAL"
+  };
+}
+
+// B — convolution: optical total vs FFT total over T reuses.
+function decideB(T) {
+  T = Math.max(1, Math.floor(T));
+  var opt = PREM.OPT_SETUP + T * PREM.OPT_PER_FRAME;
+  var fft = T * PREM.FFT_PER_FRAME;
+  var beT = Math.ceil(PREM.OPT_SETUP / (PREM.FFT_PER_FRAME - PREM.OPT_PER_FRAME)); // 21
+  var wins = opt <= fft;
+  var rTot = wins ? reduce(fft, opt) : reduce(opt, fft);
+  var rFrame = reduce(PREM.FFT_PER_FRAME, PREM.OPT_PER_FRAME);   // 51200/1025
+  return {
+    T: T, opt: opt, fft: fft, breakEven: beT, ratioTotal: rTot,
+    ratioFrame: rFrame, verdict: wins ? "OPTICAL" : "FFT"
+  };
+}
+
+// C — sampling: exact Chebyshev stream length + the bit-serial tax.
+function decideC(k) {
+  k = Math.max(1, Math.floor(k));
+  var bits = Math.ceil((k * k) / 4);                // smallest N with k^2 <= 4N
+  var tax = reduce(bits, PREM.MULT);                // bits/37 energy per multiply
+  return { k: k, bits: bits, tax: tax, verdict: "SOURCE_NOT_ENGINE" };
+}
+
+// D — ODE: smallest M with k(3M-1) <= 2M^2; analog admissible iff k <= floor_k.
+function decideD(k) {
+  k = Math.max(1, Math.floor(k));
+  var M = 1;
+  while (!(k * (3 * M - 1) <= 2 * M * M)) { M++; }  // exact integer loop
+  var admissible = k <= PREM.ANALOG_FLOOR_K;        // 1/k >= 1/1000
+  return {
+    k: k, M: M, admissible: admissible,
+    verdict: admissible ? "ANALOG" : "DIGITAL_ONLY"
+  };
+}
+
+// E — the guardrail: claim -> granted or refused, with the reason.
+function decideE(claim) {
+  if (claim === "speedup")
+    return { verdict: "REFUSED", reason: "WOULD_BE_GUESS",
+             text: "Structure-preserving maps preserve hardness. The extended " +
+                   "Church-Turing thesis is carried as an axiom by the study; the " +
+                   "2^n search space maps onto 2^n energy evaluations. No asymptotic " +
+                   "speedup may be claimed — the quantum case is open and unclaimed." };
+  if (claim === "parallel")
+    return { verdict: "GRANTED_WITH_CAVEAT", reason: "constant-factor only",
+             text: "Licensed: massive parallel energy evaluation is a real, " +
+                   "measurable constant-factor gain (problem-size-dependent). It is " +
+                   "not a complexity-class claim — budget the gadget tax: 16 slots, " +
+                   "6 surviving cubic terms in the study's witness mapping." };
+  return { verdict: "GRANTED", reason: "exact encoding",
+           text: "Licensed and verified: satisfaction and zero energy agree on " +
+                 "every assignment of the study's witness instance (8/8). The " +
+                 "encoding overhead itself is measured — 6 cubic terms — so it can " +
+                 "be budgeted, not guessed." };
+}
+/*ENGINE-END*/
+
+// ── UI wiring (rendering only; no decisions made here) ────────────
+function el(id) { return document.getElementById(id); }
+function fmt(n) { return n.toLocaleString("en-US"); }
+function fr(pair) { return pair[0].toLocaleString("en-US") + "/" + pair[1].toLocaleString("en-US"); }
+function approx(pair) {
+  var v = pair[0] / pair[1];                        // display only
+  return v >= 100 ? v.toFixed(0) : v.toFixed(2);
+}
+function badge(cls, txt) { return '<span class="verdict ' + cls + '">' + txt + '</span>'; }
+
+function renderA() {
+  var d = decideA(+el("a-n").value || 1, +el("a-bits").value);
+  var v = d.verdict === "CROSSBAR"
+    ? badge("v-win", "CROSSBAR WINS at N = " + fmt(d.N))
+    : badge("v-cond", "DIGITAL WINS at N = " + fmt(d.N) + " (below break-even)");
+  el("a-out").innerHTML =
+    "<p>" + v + "</p>" +
+    "<table>" +
+    "<tr><th>quantity</th><th>exact value</th></tr>" +
+    "<tr><td>analog total (" + d.passes + " pass" + (d.passes > 1 ? "es" : "") + ", N = " + fmt(d.N) + ")</td><td class='num'>" + fmt(d.analog) + " units</td></tr>" +
+    "<tr><td>in-memory digital</td><td class='num'>" + fmt(d.inmem) + " units — ratio " + fr(d.ratioInmem) + " <span class='approx'>≈ " + approx(d.ratioInmem) + "× fewer</span></td></tr>" +
+    "<tr><td>von-Neumann digital</td><td class='num'>" + fmt(d.vn) + " units — ratio " + fr(d.ratioVn) + " <span class='approx'>≈ " + approx(d.ratioVn) + "× fewer</span></td></tr>" +
+    "<tr><td>break-even vs in-memory at this precision</td><td class='num'>N ≥ " + fmt(d.breakEven) + "</td></tr>" +
+    "</table>" +
+    "<div class='caveat'><b>Caveat.</b> Converter overhead (the 7400N term) dominates " +
+    "below N = " + fmt(d.breakEven) + "; precision beyond 8 bits multiplies passes and " +
+    "shrinks the margin (15× → 3.7× vs in-memory between 8 and 32 bits at N = 1024). " +
+    "Cell/converter constants are illustrative model values — the verdict is about the model.</div>";
+}
+
+function renderB() {
+  var fps = Math.max(1, +el("b-fps").value || 60);
+  var sec = Math.max(0.0167, +el("b-sec").value || 10);
+  var T = Math.max(1, Math.round(fps * sec));       // frames per kernel
+  var d = decideB(T);
+  var v = d.verdict === "OPTICAL"
+    ? badge("v-win", "OPTICAL WINS at T = " + fmt(d.T) + " reuses")
+    : badge("v-cond", "FFT WINS at T = " + fmt(d.T) + " (below the crossover)");
+  el("b-out").innerHTML =
+    "<p>" + v + "</p>" +
+    "<table>" +
+    "<tr><th>quantity</th><th>exact value</th></tr>" +
+    "<tr><td>optical total (setup + " + fmt(d.T) + " × 1025)</td><td class='num'>" + fmt(d.opt) + " ops</td></tr>" +
+    "<tr><td>FFT total (" + fmt(d.T) + " × 51200)</td><td class='num'>" + fmt(d.fft) + " ops</td></tr>" +
+    "<tr><td>total-op ratio (favouring the winner)</td><td class='num'>" + fr(d.ratioTotal) + " <span class='approx'>≈ " + approx(d.ratioTotal) + "×</span></td></tr>" +
+    "<tr><td>per-frame ratio, optical : FFT</td><td class='num'>" + fr(d.ratioFrame) + " <span class='approx'>≈ " + approx(d.ratioFrame) + "× per frame</span></td></tr>" +
+    "<tr><td>crossover reuse</td><td class='num'>T* = " + fmt(d.breakEven) + "</td></tr>" +
+    "</table>" +
+    "<div class='caveat'><b>Caveat.</b> The gain is amortization: kernels rewritten more " +
+    "often than every T* = " + fmt(d.breakEven) + " frames flip the verdict to digital — " +
+    "a filter adapted every frame (T = 1) costs 1049601/51200 ≈ 20.5× more than FFT.</div>";
+}
+
+function renderC() {
+  var d = decideC(+el("c-k").value);
+  el("c-out").innerHTML =
+    "<p>" + badge("v-win", "USE NOISE AS A SOURCE, NOT AS ARITHMETIC") + "</p>" +
+    "<table>" +
+    "<tr><th>quantity</th><th>exact value</th></tr>" +
+    "<tr><td>stream length at ε = 1/" + fmt(d.k) + "</td><td class='num'>N ≥ " + fmt(d.bits) + " bits (Chebyshev, k²/4)</td></tr>" +
+    "<tr><td>one stochastic multiply</td><td class='num'>" + fmt(d.bits) + " AND-units vs one 37-unit multiply → " + fr(d.tax) + " <span class='approx'>≈ " + approx(d.tax) + "× more</span></td></tr>" +
+    "</table>" +
+    "<div class='caveat'><b>Caveat.</b> The Bernoulli stream itself is free (H4 gain); the " +
+    "bit-serial arithmetic that consumes it is not. Take the samples from physics, sum " +
+    "them digitally. Chebyshev is a floor — the exact binomial tail is far smaller.</div>";
+}
+
+function renderD() {
+  var d = decideD(+el("d-k").value);
+  var v = d.admissible
+    ? badge("v-win", "ANALOG ADMISSIBLE — " + fmt(d.M) + " Euler steps : 1 evolution")
+    : badge("v-ref", "DIGITAL ONLY — below the analog floor");
+  el("d-out").innerHTML =
+    "<p>" + v + "</p>" +
+    "<table>" +
+    "<tr><th>quantity</th><th>exact value</th></tr>" +
+    "<tr><td>digital Euler steps for 1/" + fmt(d.k) + "</td><td class='num'>M = " + fmt(d.M) + " (smallest M with k(3M−1) ≤ 2M²)</td></tr>" +
+    "<tr><td>analog error floor</td><td class='num'>1/1000 — " + (d.admissible ? "target is reachable" : "target 1/" + fmt(d.k) + " is beyond the floor") + "</td></tr>" +
+    "</table>" +
+    "<div class='caveat'><b>Caveat.</b> Continuous time is a bounded-accuracy win. Demand " +
+    "1/10³ and the full 1500:1 step ratio is real; demand 1/10⁶ (M = 1,500,000) and the " +
+    "isomorphism switches off. The floor is a declared model axiom — a deployment " +
+    "measures its own first.</div>";
+}
+
+function renderE() {
+  var d = decideE(el("e-claim").value);
+  var cls = d.verdict === "REFUSED" ? "v-ref" : (d.verdict === "GRANTED" ? "v-win" : "v-cond");
+  el("e-out").innerHTML =
+    "<p>" + badge(cls, d.verdict + " — " + d.reason) + "</p>" +
+    "<div class='caveat'>" + d.text + "</div>";
+}
+
+["a-n", "a-bits"].forEach(function (i) { el(i).addEventListener("input", renderA); });
+["b-fps", "b-sec"].forEach(function (i) { el(i).addEventListener("input", renderB); });
+["c-k"].forEach(function (i) { el(i).addEventListener("change", renderC); });
+["d-k"].forEach(function (i) { el(i).addEventListener("change", renderD); });
+["e-claim"].forEach(function (i) { el(i).addEventListener("change", renderE); });
+renderA(); renderB(); renderC(); renderD(); renderE();
+</script>
+</body>
+</html>
