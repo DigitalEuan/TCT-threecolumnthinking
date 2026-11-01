@@ -1,0 +1,9 @@
+{
+ "comment": "before (v1): includes 'farthings' \u2014 farthings walk: amount in 240-unit pence recomputing the same geometric product (tautology)",
+ "primitives": [
+  "pow",
+  "mult",
+  "eq",
+  "farthings"
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "ohms_law_premise",
+   "type": "Prop",
+   "note": "V = IR and P = VI = I^2 R = V^2/R (definitions under test)"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "ohm_violation",
+   "type": "12 ≠ 5 * 4",
+   "proof": "decide"
+  },
+  {
+   "name": "power_vi_vs_i2r",
+   "type": "60 ≠ 100",
+   "proof": "decide"
+  },
+  {
+   "name": "power_vi_vs_v2r",
+   "type": "60 ≠ 36",
+   "proof": "decide"
+  },
+  {
+   "name": "power_i2r_vs_v2r",
+   "type": "100 ≠ 36",
+   "proof": "decide"
+  }
+ ]
+}

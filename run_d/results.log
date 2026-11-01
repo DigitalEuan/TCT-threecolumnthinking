@@ -1,0 +1,14 @@
+T01: exit=0 final=FINAL: 'ANSWER_U_J=2'
+T02: exit=0 final=FINAL: 'H3_M=3645/8192'
+T03: exit=0 final=FINAL: 'WITNESS_TRIPLE_OK=1'
+T04: exit=0 final=FINAL: 'SUBMERGED_FRACTION=2750/2997'
+T05: exit=0 final=FINAL: 'NEXT_DAY_INDEX=4'
+T06: exit=0 final=FINAL: 'ANSWER_INT=2'
+T07: exit=0 final=FINAL: 'ANSWER=10'
+T08: exit=0 final=FINAL: 'AMOUNT=9261/80'
+T09: exit=0 final=FINAL: 'REFUSAL=UNDERDETERMINED'
+T10: exit=0 final=FINAL: 'PI_IN_BRACKET=1'
+T11: exit=0 final=FINAL: 'ANSWER_STATE=1'
+T12: exit=0 final=FINAL: 'REFUSAL=INCONSISTENT_GIVENS'
+tier1: 12/12 VERIFIED, 0 failed
+spot checks: 31/31 PASS, 0 FAIL

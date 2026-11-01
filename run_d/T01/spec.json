@@ -1,0 +1,66 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "hooke_law",
+   "type": "Prop",
+   "note": "F = kx (Hooke, empirical)"
+  },
+  {
+   "name": "si_units_premise",
+   "type": "Prop",
+   "note": "k = 100 N/m, x0 = 1/5 m, m = 1 kg (illustrative givens)"
+  },
+  {
+   "name": "energy_exchange_premise",
+   "type": "Prop",
+   "note": "elastic PE <-> KE, no dissipation"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "stored_energy_cross",
+   "type": "2 * 2 * 25 = 100 * 1",
+   "proof": "decide"
+  },
+  {
+   "name": "max_speed_cross",
+   "type": "2 * 2 * 25 * 1 = 100 * 1",
+   "proof": "decide"
+  },
+  {
+   "name": "kinetic_energy_cross",
+   "type": "1 * 2 * 2 = 2 * 2",
+   "proof": "decide"
+  },
+  {
+   "name": "exchange_balance",
+   "type": "2 * 2 = 1 * 2 * 2",
+   "proof": "decide"
+  },
+  {
+   "name": "quarter_cycle_total",
+   "type": "2 + 0 = 0 + 2",
+   "proof": "decide"
+  },
+  {
+   "name": "stiffness_mass_ratio",
+   "type": "100 * 1 = 100",
+   "proof": "decide"
+  },
+  {
+   "name": "energy_exchange_symbolic",
+   "type": "∀ (k m x : Nat), x > 0 → k * x * x / (2 * m) * m = k * x * x / 2",
+   "proof": null,
+   "gap": "needs Mathlib order reasoning (linarith) or manual calc"
+  },
+  {
+   "name": "damped_loop_bound",
+   "type": "∀ n : Nat, n > 0 → 1 ≤ 3 ^ n / 4 ^ n + 1",
+   "proof": null,
+   "gap": "geometric decay bound — development required"
+  }
+ ]
+}

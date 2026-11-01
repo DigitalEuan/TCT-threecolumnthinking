@@ -1,0 +1,33 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [],
+ "lemmas": [
+  {
+   "name": "successor_route",
+   "type": "1 + 1 = 2",
+   "proof": "rfl"
+  },
+  {
+   "name": "decide_route",
+   "type": "1 + 1 = 2",
+   "proof": "decide"
+  },
+  {
+   "name": "xor_site_value",
+   "type": "(1 + 1) % 2 = 0",
+   "proof": "decide"
+  },
+  {
+   "name": "mod7_value",
+   "type": "(1 + 1) % 7 = 2",
+   "proof": "decide"
+  },
+  {
+   "name": "xor_site_bool",
+   "type": "Bool.xor true true = false",
+   "proof": "decide"
+  }
+ ]
+}

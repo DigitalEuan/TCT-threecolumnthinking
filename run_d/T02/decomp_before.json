@@ -1,0 +1,11 @@
+{
+ "comment": "before (v1): includes 'decay_variant' \u2014 geometric-decay height variant: h_{k+1} = e^2 h_k re-expressed as ratio chain \u2014 algebraically equivalent by construction (tautology)",
+ "primitives": [
+  "sqrt",
+  "square",
+  "scale",
+  "sum",
+  "eq",
+  "decay_variant"
+ ]
+}

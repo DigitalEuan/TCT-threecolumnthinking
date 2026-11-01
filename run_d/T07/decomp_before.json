@@ -1,0 +1,10 @@
+{
+ "comment": "before (v1): includes 'ordered' \u2014 ordered-selection count 5*4/2 vs the unordered pair enumeration (representation variant, tautology)",
+ "primitives": [
+  "factorial",
+  "divide",
+  "enumerate",
+  "eq",
+  "ordered"
+ ]
+}

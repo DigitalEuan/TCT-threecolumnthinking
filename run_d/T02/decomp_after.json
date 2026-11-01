@@ -1,0 +1,10 @@
+{
+ "comment": "after (v2): 'decay_variant' removed by the tautology audit / reporting-step rule; witnesses preserved",
+ "primitives": [
+  "sqrt",
+  "square",
+  "scale",
+  "sum",
+  "eq"
+ ]
+}

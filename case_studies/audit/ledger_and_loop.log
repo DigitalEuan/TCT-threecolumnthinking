@@ -1,0 +1,20 @@
+── famous-constants-tct
+Scanned 3 file(s): sorry=3 ['alpha_physical_target', 'gamma_rational_target', 'zeta2_tail_symbolic'], axioms=7 ['analysis_convergence_premises', 'apery_theorem', 'e_definition', 'euler_basel_identity', 'gelfond_schneider', 'physical_constants_empirical', 'pi_definition']
+BEFORE: total=9 (atomic=7, composite=2)
+AFTER:  total=6 (atomic=4, composite=2)
+REDUCED by 3 — re-verify (Column 3 + Lean) before accepting.
+── maudlin-measurement-trilemma-tct
+Scanned 3 file(s): sorry=3 ['branch_weight_sum_general', 'everett_emergence_gap', 'product_state_minors'], axioms=5 ['born_rule_empirical', 'detector_single_readings_empirical', 'door_realization_principle', 'grw_lambda_empirical', 'linearity_entangles']
+BEFORE: total=12 (atomic=9, composite=3)
+AFTER:  total=6 (atomic=4, composite=2)
+REDUCED by 6 — re-verify (Column 3 + Lean) before accepting.
+── physical-isomorphisms-tct
+Scanned 3 file(s): sorry=3 ['break_even_symbolic', 'euler_error_general', 'stochastic_n_required'], axioms=6 ['analog_offset_model_empirical', 'crossbar_model_empirical', 'horowitz_energies_empirical', 'ising_relaxation_empirical', 'noise_bernoulli_empirical', 'physical_church_turing']
+BEFORE: total=11 (atomic=9, composite=2)
+AFTER:  total=7 (atomic=5, composite=2)
+REDUCED by 4 — re-verify (Column 3 + Lean) before accepting.
+── speed-of-light-derivation-tct
+Scanned 3 file(s): sorry=3 ['alpha_from_premises', 'inv_alpha_interval_general', 'lr_bound_nonneg'], axioms=7 ['alpha_empirical', 'historical_determinations_empirical', 'ignatowski_premises', 'lieb_robinson_theorem', 'maxwell_em_wave_speed', 'si_definition_c', 'wave_scheme_represents_wave']
+BEFORE: total=10 (atomic=8, composite=2)
+AFTER:  total=7 (atomic=5, composite=2)
+REDUCED by 3 — re-verify (Column 3 + Lean) before accepting.

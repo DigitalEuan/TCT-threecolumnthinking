@@ -1,0 +1,4 @@
+{
+  "comment": "v2 - optimized: duplicated sum merged, scale/accum removed (stitched steps, no witness of their own); witnesses preserved",
+  "primitives": ["sum", "recip", "mult", "sat", "eq", "rate"]
+}

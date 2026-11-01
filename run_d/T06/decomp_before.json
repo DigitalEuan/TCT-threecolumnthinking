@@ -1,0 +1,8 @@
+{
+ "comment": "minimal derivation: no reducible primitive (floor)",
+ "primitives": [
+  "succ",
+  "mod",
+  "eq"
+ ]
+}

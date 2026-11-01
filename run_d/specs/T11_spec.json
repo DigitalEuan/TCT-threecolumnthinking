@@ -1,0 +1,49 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "switch_toggles_premise",
+   "type": "Prop",
+   "note": "each flip toggles the state (declared reading)"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "flip_count_parity",
+   "type": "17 % 2 = 1",
+   "proof": "decide"
+  },
+  {
+   "name": "toggle_law_sample",
+   "type": "(1 + 1) % 2 = 0",
+   "proof": "decide"
+  },
+  {
+   "name": "state_after_two",
+   "type": "(0 + 2) % 2 = 0",
+   "proof": "decide"
+  },
+  {
+   "name": "even_flips_return",
+   "type": "(0 + 16) % 2 = 0",
+   "proof": "decide"
+  },
+  {
+   "name": "parity_law",
+   "type": "∀ n : Int, (n + 2) % 2 = n % 2",
+   "proof": "omega"
+  },
+  {
+   "name": "final_state",
+   "type": "(0 + 17) % 2 = 1",
+   "proof": "decide"
+  },
+  {
+   "name": "xor_site_declared",
+   "type": "17 % 2 = 1 ∧ (0 + 17) % 2 = 1",
+   "proof": "decide"
+  }
+ ]
+}

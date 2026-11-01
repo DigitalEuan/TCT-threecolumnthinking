@@ -1,0 +1,9 @@
+{
+ "comment": "before (v1): includes 'index1' \u2014 1-based index encoding of the 0-based Z/7Z arithmetic (representation variant, tautology)",
+ "primitives": [
+  "mod",
+  "succ",
+  "eq",
+  "index1"
+ ]
+}

@@ -1,0 +1,10 @@
+{
+ "comment": "unchanged: loop stopped at the floor (dropping any primitive would drop a verification path)",
+ "primitives": [
+  "sqrt",
+  "mult",
+  "sub",
+  "eq",
+  "search"
+ ]
+}

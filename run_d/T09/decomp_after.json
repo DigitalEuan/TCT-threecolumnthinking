@@ -1,0 +1,9 @@
+{
+ "comment": "after (v2): 'lagrange' removed by the tautology audit / reporting-step rule; witnesses preserved",
+ "primitives": [
+  "pow",
+  "difference",
+  "enumerate",
+  "eq"
+ ]
+}

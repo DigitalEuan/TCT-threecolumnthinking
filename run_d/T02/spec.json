@@ -1,0 +1,61 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "restitution_empirical",
+   "type": "Prop",
+   "note": "e = 3/4 (measured, declared)"
+  },
+  {
+   "name": "gravity_value_earth",
+   "type": "Prop",
+   "note": "g = 49/5 m/s^2 (engineered rational)"
+  },
+  {
+   "name": "kinematics_premise",
+   "type": "Prop",
+   "note": "constant-g kinematics, no drag"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "impact_speed_cross",
+   "type": "49 * 10 = 98 * 5",
+   "proof": "decide"
+  },
+  {
+   "name": "first_bounce_ratio",
+   "type": "45 * 2 * 16 = 5 * 9 * 32",
+   "proof": "decide"
+  },
+  {
+   "name": "third_bounce_height",
+   "type": "729 * 5 * 8192 = 3645 * 4096 * 2",
+   "proof": "decide"
+  },
+  {
+   "name": "total_distance_sum",
+   "type": "125 = 5 * 7 + 90",
+   "proof": "decide"
+  },
+  {
+   "name": "total_time_sum",
+   "type": "5 * 7 = 5 + 30",
+   "proof": "decide"
+  },
+  {
+   "name": "geometric_closure_symbolic",
+   "type": "∀ (a r : Nat), r > 1 → 1 ≤ a * r / (r - 1) + 1",
+   "proof": null,
+   "gap": "infinite geometric sum — needs Mathlib order theory"
+  },
+  {
+   "name": "dissipation_ledger_symbolic",
+   "type": "∀ (e : Nat), e > 1 → 1 ≤ e * e",
+   "proof": null,
+   "gap": "general e^{2k} accounting — development required"
+  }
+ ]
+}

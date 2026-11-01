@@ -1,0 +1,10 @@
+{
+ "comment": "before (v1): includes 'report' \u2014 reporting step (narrative duplication of the ledger); no witness of its own",
+ "primitives": [
+  "square",
+  "halve",
+  "ratio",
+  "eq",
+  "report"
+ ]
+}

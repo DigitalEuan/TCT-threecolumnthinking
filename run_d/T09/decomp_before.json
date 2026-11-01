@@ -1,0 +1,10 @@
+{
+ "comment": "before (v1): includes 'lagrange' \u2014 Lagrange-form evaluation of the interpolating cubic: same polynomial as the finite-difference tower (tautology)",
+ "primitives": [
+  "pow",
+  "difference",
+  "enumerate",
+  "eq",
+  "lagrange"
+ ]
+}

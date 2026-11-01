@@ -1,0 +1,28 @@
+=== famous-constants-tct ===
+  01_pi_convergents.py           exit=0 FINAL: 'PI_DIGITS13=31415926535897'
+  02_e_phi_sqrt2.py              exit=0 FINAL: 'E_DIGITS12=2718281828459'
+  03_zeta2_basel.py              exit=0 FINAL: 'TAIL_SANDWICH_OK=1'
+  04_ln2_catalan.py              exit=0 FINAL: 'CATALAN_DIGITS12=915965586372'
+  05_gamma_open.py               exit=0 FINAL: 'GAMMA_DIGITS10=5746574555'
+  06_taxonomy.py                 exit=0 FINAL: 'OPEN_LIST_OK=1'
+=== maudlin-measurement-trilemma-tct ===
+  01_trilemma_core.py            exit=0 FINAL: 'C3_CONTRADICTED=1'
+  02_born_decoherence.py         exit=0 FINAL: 'BRANCH_WEIGHTS=1/2,1/2'
+  03_grw_collapse_rate.py        exit=0 FINAL: 'N_THRESHOLD=10000000000000000'
+  04_branch_counting.py          exit=0 FINAL: 'INDEX_COVERAGE=1'
+  05_doors_truth_table.py        exit=0 FINAL: 'DOOR_110=many-worlds (Everett) (sacrifices C3: 
+  06_cent_fluidic_latch.py       exit=0 FINAL: 'EXTRA_VARIABLE_REQUIRED=1'
+=== physical-isomorphisms-tct ===
+  01_crossbar_break_even.py      exit=0 FINAL: 'LATENCY_RATIO_N256=65536/513'
+  02_convolution_amortization.py exit=0 FINAL: 'LATENCY_RATIO=51200'
+  03_stochastic_streams.py       exit=0 FINAL: 'CROSSOVER_WIDTH=11'
+  04_analog_ode.py               exit=0 FINAL: 'STEP_RATIO=1500'
+  05_primitives_catalog.py       exit=0 FINAL: 'MIN_DOMAINS=2'
+  06_sat_ising.py                exit=0 FINAL: 'MAPPING_SLOTS=16'
+=== speed-of-light-derivation-tct ===
+  01_si_definition.py            exit=0 FINAL: 'DEFINITIONAL=1'
+  02_em_determinations.py        exit=0 FINAL: 'ERAS_AGREE=1'
+  03_wave_cone.py                exit=0 FINAL: 'SUPPORT_T20=19'
+  04_clifford_cone.py            exit=0 FINAL: 'SUPPORT_FINAL=5'
+  05_lr_bound.py                 exit=0 FINAL: 'STRONGER_BOUND_OK=1'
+  06_alpha_boundary.py           exit=0 FINAL: 'REFUSAL_REGISTERED=1'

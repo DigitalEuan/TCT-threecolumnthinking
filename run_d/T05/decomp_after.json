@@ -1,0 +1,8 @@
+{
+ "comment": "after (v2): 'index1' removed by the tautology audit / reporting-step rule; witnesses preserved",
+ "primitives": [
+  "mod",
+  "succ",
+  "eq"
+ ]
+}

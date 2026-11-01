@@ -1,0 +1,9 @@
+{
+ "comment": "after (v2): 'report' removed by the tautology audit / reporting-step rule; witnesses preserved",
+ "primitives": [
+  "square",
+  "halve",
+  "ratio",
+  "eq"
+ ]
+}

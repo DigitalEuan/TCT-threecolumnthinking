@@ -1,0 +1,9 @@
+{
+ "comment": "after (v2): 'ordered' removed by the tautology audit / reporting-step rule; witnesses preserved",
+ "primitives": [
+  "factorial",
+  "divide",
+  "enumerate",
+  "eq"
+ ]
+}

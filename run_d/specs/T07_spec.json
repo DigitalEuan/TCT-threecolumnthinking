@@ -1,0 +1,45 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "combination_definition",
+   "type": "Prop",
+   "note": "C(n,k) = n!/(k!(n-k)!) (definition)"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "formula_value",
+   "type": "120 / (2 * 6) = 10",
+   "proof": "decide"
+  },
+  {
+   "name": "pair_count",
+   "type": "4 + 3 + 2 + 1 = 10",
+   "proof": "decide"
+  },
+  {
+   "name": "pascal_identity",
+   "type": "4 + 6 = 10",
+   "proof": "decide"
+  },
+  {
+   "name": "complement_count",
+   "type": "120 / (6 * 2) = 10",
+   "proof": "decide"
+  },
+  {
+   "name": "subset_symmetry",
+   "type": "5 * 4 / 2 = 10",
+   "proof": "decide"
+  },
+  {
+   "name": "choose_symbolic",
+   "type": "∀ (n k : Nat), k ≤ n → n * (n - 1) / 2 * (n - 2) / 3 = (n - 2) * (n - 3) / 2 * n / 2",
+   "proof": null,
+   "gap": "general factorial identity — needs Mathlib ring/field_simp"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "comment": "unchanged: loop stopped at the floor (dropping any primitive would drop a verification path)",
+ "primitives": [
+  "scale",
+  "square",
+  "halve",
+  "eq"
+ ]
+}

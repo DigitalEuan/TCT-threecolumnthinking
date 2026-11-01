@@ -1,0 +1,60 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "newton_gravity_law",
+   "type": "Prop",
+   "note": "F = GmM/r^2 (named premise)"
+  },
+  {
+   "name": "gravity_earth_value",
+   "type": "Prop",
+   "note": "g = 49/5 m/s^2 (illustrative)"
+  },
+  {
+   "name": "kinematic_relations_premise",
+   "type": "Prop",
+   "note": "v = gt, h = gt^2/2, v^2 = 2gh"
+  },
+  {
+   "name": "free_fall_premise",
+   "type": "Prop",
+   "note": "drop from rest, no drag"
+  },
+  {
+   "name": "mass_independence_premise",
+   "type": "Prop",
+   "note": "free-fall acceleration independent of mass"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "height_time_cross",
+   "type": "2 * 5 * 5 * 49 = 49 * 25 * 2",
+   "proof": "decide"
+  },
+  {
+   "name": "speed_time_cross",
+   "type": "7 * 5 * 7 = 49 * 5",
+   "proof": "decide"
+  },
+  {
+   "name": "speed_height_cross",
+   "type": "49 * 5 * 2 = 2 * 49 * 5",
+   "proof": "decide"
+  },
+  {
+   "name": "mean_speed_cross",
+   "type": "5 * 2 * 7 = 7 * 5 * 2",
+   "proof": "decide"
+  },
+  {
+   "name": "general_free_fall_symbolic",
+   "type": "∀ (g t : Nat), g > 0 → 0 < g * t * t",
+   "proof": null,
+   "gap": "needs Mathlib order reasoning (linarith) or manual calc"
+  }
+ ]
+}

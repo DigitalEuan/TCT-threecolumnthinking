@@ -1,0 +1,4 @@
+{
+  "comment": "v2 - optimized: duplicate sum/mult merged, scale/accum removed (stitched steps, no witness attached); witnesses preserved",
+  "primitives": ["state_space", "sum", "mult", "rate", "sat", "eq", "delay"]
+}

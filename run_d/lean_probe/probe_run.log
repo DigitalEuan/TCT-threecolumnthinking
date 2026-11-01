@@ -1,0 +1,16 @@
+p01_Q_notation               live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p01_Q_notation.lean:1:11: error(lean.synthInstance
+p02_rat_decide               live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p02_rat_decide.lean:1:38: error: Tactic `decide` f
+p03_rat_rfl                  live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p03_rat_rfl.lean:1:38: error: Tactic `rfl` failed:
+p04_rat_native_decide        live=PASS expected=PASS AGREE | 
+p05_omega_int_mod            live=PASS expected=PASS AGREE | 
+p06_omega_nat_mod_negated    live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p06_omega_nat_mod_negated.lean:1:64: error: omega 
+p07_simp                     live=PASS expected=PASS AGREE | 
+p08_norm_num                 live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p08_norm_num.lean:1:27: error: unknown tactic
+p09_ring                     live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p09_ring.lean:1:43: error: unknown tactic
+p10_nat_factorial            live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p10_nat_factorial.lean:1:10: error(lean.unknownIde
+p11_real_pi                  live=FAIL expected=FAIL AGREE | /home/z/my-project/tct_run_d/lean_probe/p11_real_pi.lean:1:7: error(lean.unknownIdentifier
+p12_nat_xor_decide           live=PASS expected=FAIL DISAGREE | 
+p13_nat_decide               live=PASS expected=PASS AGREE | 
+p14_bool_xor_decide          live=PASS expected=PASS AGREE | 
+p15_scaffold_lake5           live=FAIL expected=FAIL AGREE | error: /home/z/my-project/tct_run_d/lean_probe/p15_scaffold_as_shipped/lakefile.lean:7:10:
+p12b_nat_xor_variable live=FAIL | /home/z/my-project/tct_run_d/lean_probe/p12b_nat_xor_var.lean:1:40: error: Expec

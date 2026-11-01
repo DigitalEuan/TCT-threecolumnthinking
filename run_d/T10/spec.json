@@ -1,0 +1,50 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "pi_definition",
+   "type": "Prop",
+   "note": "pi = circle constant (definitional; core Lean cannot name Real.pi)"
+  },
+  {
+   "name": "area_formula_premise",
+   "type": "Prop",
+   "note": "A = pi r^2, r = 1 m"
+  },
+  {
+   "name": "classical_bracket_premise",
+   "type": "Prop",
+   "note": "223/71 < pi < 22/7 (Archimedes 96-gon)"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "above_classical_lower",
+   "type": "314103 * 71 = 223 * 100000 + 1313",
+   "proof": "decide"
+  },
+  {
+   "name": "below_classical_upper",
+   "type": "22 * 100000 = 314271 * 7 + 103",
+   "proof": "decide"
+  },
+  {
+   "name": "stern_brocot_in_bracket",
+   "type": "267 * 71 = 223 * 85 + 2",
+   "proof": "decide"
+  },
+  {
+   "name": "bracket_width",
+   "type": "314271 - 314103 = 168",
+   "proof": "decide"
+  },
+  {
+   "name": "area_formula_symbolic",
+   "type": "∀ (r : Nat), r > 0 → 0 < 3 * r * r",
+   "proof": null,
+   "gap": "needs Mathlib order reasoning or manual calc"
+  }
+ ]
+}

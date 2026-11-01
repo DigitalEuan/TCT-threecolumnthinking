@@ -1,0 +1,34 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "calendar_convention",
+   "type": "Prop",
+   "note": "days indexed Wed=3 in Z/7Z (ISO convention)"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "wednesday_successor",
+   "type": "(3 + 1) % 7 = 4",
+   "proof": "decide"
+  },
+  {
+   "name": "cyclic_wrap",
+   "type": "(6 + 1) % 7 = 0",
+   "proof": "decide"
+  },
+  {
+   "name": "seven_day_cycle",
+   "type": "(3 + 7) % 7 = 3",
+   "proof": "decide"
+  },
+  {
+   "name": "succ_mod_law",
+   "type": "∀ n : Int, (n + 1) % 7 = (n % 7 + 1) % 7",
+   "proof": "omega"
+  }
+ ]
+}

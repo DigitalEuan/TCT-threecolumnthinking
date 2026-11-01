@@ -1,0 +1,9 @@
+{
+ "comment": "before (v1): includes 'reassert' \u2014 mass-conservation re-assertion: m_ice == m_water restated via the commuted product (tautology)",
+ "primitives": [
+  "mult",
+  "eq",
+  "sub",
+  "reassert"
+ ]
+}

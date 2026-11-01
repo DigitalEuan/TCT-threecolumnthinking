@@ -1,0 +1,4 @@
+{
+  "comment": "v2 - optimized cent decomposition after one iteration: duplicate sum/mult/eq merged, scale/rate/accum removed (stitched steps with no witness attached); all witnesses preserved",
+  "primitives": ["state_space", "sum", "mult", "eq", "sat", "hysteresis"]
+}

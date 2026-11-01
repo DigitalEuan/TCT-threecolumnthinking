@@ -1,0 +1,60 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "archimedes_principle",
+   "type": "Prop",
+   "note": "buoyancy = weight of displaced fluid"
+  },
+  {
+   "name": "ice_density_empirical",
+   "type": "Prop",
+   "note": "rho_ice = 2750 (scaled, near 917 kg/m^3)"
+  },
+  {
+   "name": "water_density_empirical",
+   "type": "Prop",
+   "note": "rho_water = 2997 (scaled, near 999 kg/m^3 at 4 C)"
+  },
+  {
+   "name": "expansion_definition_premise",
+   "type": "Prop",
+   "note": "water's anomalous expansion: max density at 4 C"
+  },
+  {
+   "name": "buoyancy_premise",
+   "type": "Prop",
+   "note": "floating equilibrium: displaced mass = object mass"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "ice_mass_value",
+   "type": "2750 * 2997 = 8241750",
+   "proof": "decide"
+  },
+  {
+   "name": "displaced_water_mass",
+   "type": "2997 * 2750 = 8241750",
+   "proof": "decide"
+  },
+  {
+   "name": "masses_agree",
+   "type": "2750 * 2997 = 2997 * 2750",
+   "proof": "decide"
+  },
+  {
+   "name": "above_water_fraction",
+   "type": "2997 - 2750 = 247",
+   "proof": "decide"
+  },
+  {
+   "name": "anomalous_expansion_symbolic",
+   "type": "∀ (a b : Nat), a ≤ b → a - 1 ≤ b - 1",
+   "proof": null,
+   "gap": "density-inversion reasoning — needs Mathlib (Nat.sub lemmas)"
+  }
+ ]
+}

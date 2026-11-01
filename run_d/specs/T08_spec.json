@@ -1,0 +1,40 @@
+{
+ "module": "TCT",
+ "imports": [],
+ "definitions": [],
+ "axioms": [
+  {
+   "name": "compound_interest_definition",
+   "type": "Prop",
+   "note": "A = P(1+r)^n (definition), P=100, r=1/20, n=3"
+  }
+ ],
+ "lemmas": [
+  {
+   "name": "amount_cross",
+   "type": "9261 * 8000 = 926100 * 80",
+   "proof": "decide"
+  },
+  {
+   "name": "terminating_denominator",
+   "type": "80 = 16 * 5",
+   "proof": "decide"
+  },
+  {
+   "name": "decimal_digits",
+   "type": "9261 * 125 = 1157625",
+   "proof": "decide"
+  },
+  {
+   "name": "interest_cross",
+   "type": "1261 * 10000 = 157625 * 80",
+   "proof": "decide"
+  },
+  {
+   "name": "geometric_growth_symbolic",
+   "type": "∀ (p : Nat), p * 21 * 21 * 21 = p * 9261 * 1 * 1 * 1 + (p * 21 * 21 * 21 - p * 9261)",
+   "proof": null,
+   "gap": "general growth identity — needs ring (absent in core)"
+  }
+ ]
+}

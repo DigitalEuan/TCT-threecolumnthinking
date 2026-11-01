@@ -1,0 +1,10 @@
+{
+ "comment": "minimal derivation: no reducible primitive (floor)",
+ "primitives": [
+  "sqrt",
+  "mult",
+  "sub",
+  "eq",
+  "search"
+ ]
+}

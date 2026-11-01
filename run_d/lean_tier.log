@@ -1,0 +1,29 @@
+Scaffolded /home/z/my-project/tct_run_d/T01/lean_tct: 6 proved, 2 sorry, 3 axioms, 0 defs; toolchain leanprover/lean4:stable
+T01: BUILD OK  (sorry warnings: 2)
+Scaffolded /home/z/my-project/tct_run_d/T02/lean_tct: 5 proved, 2 sorry, 3 axioms, 0 defs; toolchain leanprover/lean4:stable
+T02: BUILD OK  (sorry warnings: 2)
+Scaffolded /home/z/my-project/tct_run_d/T03/lean_tct: 4 proved, 1 sorry, 5 axioms, 0 defs; toolchain leanprover/lean4:stable
+T03: BUILD OK  (sorry warnings: 1)
+Scaffolded /home/z/my-project/tct_run_d/T04/lean_tct: 4 proved, 1 sorry, 5 axioms, 0 defs; toolchain leanprover/lean4:stable
+T04: BUILD OK  (sorry warnings: 1)
+Scaffolded /home/z/my-project/tct_run_d/T05/lean_tct: 4 proved, 0 sorry, 1 axioms, 0 defs; toolchain leanprover/lean4:stable
+T05: BUILD OK  (sorry warnings: 0)
+Scaffolded /home/z/my-project/tct_run_d/T06/lean_tct: 5 proved, 0 sorry, 0 axioms, 0 defs; toolchain leanprover/lean4:stable
+T06: BUILD OK  (sorry warnings: 0)
+Scaffolded /home/z/my-project/tct_run_d/T07/lean_tct: 5 proved, 1 sorry, 1 axioms, 0 defs; toolchain leanprover/lean4:stable
+T07: BUILD OK  (sorry warnings: 1)
+Scaffolded /home/z/my-project/tct_run_d/T08/lean_tct: 4 proved, 1 sorry, 1 axioms, 0 defs; toolchain leanprover/lean4:stable
+T08: BUILD OK  (sorry warnings: 1)
+Scaffolded /home/z/my-project/tct_run_d/T09/lean_tct: 4 proved, 0 sorry, 1 axioms, 0 defs; toolchain leanprover/lean4:stable
+T09: BUILD OK  (sorry warnings: 0)
+Scaffolded /home/z/my-project/tct_run_d/T10/lean_tct: 4 proved, 1 sorry, 3 axioms, 0 defs; toolchain leanprover/lean4:stable
+T10: BUILD FAILED
+    error: TCT/Basic.lean:11:2: Tactic `decide` proved that the proposition
+    error: build failed
+Scaffolded /home/z/my-project/tct_run_d/T11/lean_tct: 7 proved, 0 sorry, 1 axioms, 0 defs; toolchain leanprover/lean4:stable
+T11: BUILD OK  (sorry warnings: 0)
+Scaffolded /home/z/my-project/tct_run_d/T12/lean_tct: 4 proved, 0 sorry, 1 axioms, 0 defs; toolchain leanprover/lean4:stable
+T12: BUILD OK  (sorry warnings: 0)
+lean tier: 11/12 built, 1 failed
+Scaffolded /home/z/my-project/tct_run_d/T10/lean_tct: 4 proved, 1 sorry, 3 axioms, 0 defs; toolchain leanprover/lean4:stable
+T10: BUILD OK (sorry warnings: 1) [after kernel-caught arithmetic fix: 314103*71 = 223*100000 + 1313, not +813]

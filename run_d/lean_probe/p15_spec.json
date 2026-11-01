@@ -1,0 +1,1 @@
+{"module":"TCT","imports":[],"definitions":[],"axioms":[],"lemmas":[{"name":"trivial_one","type":"1 + 1 = 2","proof":"decide"}]}

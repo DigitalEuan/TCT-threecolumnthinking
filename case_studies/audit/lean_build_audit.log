@@ -1,0 +1,17 @@
+=== famous-constants-tct (as shipped) ===
+  error: /home/z/my-project/case_studies/famous-constants-tct/famous-constants-tct/lean/tct_constants/lakefile.lean:7:10: Unknown identifier `Main`
+=== maudlin-measurement-trilemma-tct (as shipped) ===
+  error: /home/z/my-project/case_studies/maudlin-measurement-trilemma-tct/maudlin-measurement-trilemma-tct/lean/tct_maudlin/lakefile.lean:7:10: Unknown identifier `Main`
+=== physical-isomorphisms-tct (as shipped) ===
+  error: /home/z/my-project/case_studies/physical-isomorphisms-tct/physical-isomorphisms-tct/lean/tct_physiso/lakefile.lean:7:10: Unknown identifier `Main`
+=== speed-of-light-derivation-tct (as shipped) ===
+  error: /home/z/my-project/case_studies/speed-of-light-derivation-tct/speed-of-light-derivation-tct/lean/tct_lightcone/lakefile.lean:7:10: Unknown identifier `Main`
+=== notation repair + native_decide phase ===
+=== famous-constants (repaired: Nat/Rat + native_decide) ===
+  BUILD OK — sorry warnings: 3
+=== maudlin-trilemma (repaired: Nat/Rat + native_decide) ===
+  BUILD OK — sorry warnings: 3
+=== physical-isomorphisms (repaired: Nat/Rat + native_decide) ===
+  BUILD OK — sorry warnings: 3
+=== speed-of-light (repaired: Nat/Rat + native_decide) ===
+  BUILD OK — sorry warnings: 3

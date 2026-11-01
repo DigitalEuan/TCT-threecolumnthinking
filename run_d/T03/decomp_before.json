@@ -1,0 +1,9 @@
+{
+ "comment": "minimal derivation: no reducible primitive (floor)",
+ "primitives": [
+  "scale",
+  "square",
+  "halve",
+  "eq"
+ ]
+}

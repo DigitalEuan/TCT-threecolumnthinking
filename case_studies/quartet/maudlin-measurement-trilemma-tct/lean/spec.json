@@ -1,0 +1,45 @@
+{
+  "module": "TCT",
+  "imports": [],
+  "definitions": [
+    {"name": "lambda_grw", "type": "ℚ", "value": "1 / 10^16"},
+    {"name": "sec_per_julian_year", "type": "ℕ", "value": "31557600"},
+    {"name": "door_count", "type": "ℕ", "value": "3"}
+  ],
+  "axioms": [
+    {"name": "linearity_entangles", "type": "∀ (C1 C2 C3 : Prop), C1 ∧ C2 → C3 → False",
+     "note": "physical content of the entangled-detector toy model (re-derived in scripts/column3/01_trilemma_core.py): completeness + linear evolution yields a detector superposition with two macroscopic readings, incompatible with a single outcome"},
+    {"name": "detector_single_readings_empirical", "type": "Prop",
+     "note": "empirical premise of C3: detectors show one result (Bell 1990, 'outcomes')"},
+    {"name": "born_rule_empirical", "type": "Prop",
+     "note": "empirical: outcome weights are squared amplitudes"},
+    {"name": "grw_lambda_empirical", "type": "Prop",
+     "note": "empirical parameter: GRW rate lambda = 10^-16 s^-1 per particle (Ghirardi-Rimini-Weber 1986)"},
+    {"name": "door_realization_principle", "type": "Prop",
+     "note": "philosophical: each 2-claim pair is realized by an interpretation family (Bohm 1952 / GRW 1986 / Everett 1957)"}
+  ],
+  "lemmas": [
+    {"name": "trilemma_from_model", "type": "∀ (C1 C2 C3 : Prop), C1 ∧ C2 ∧ C3 → False",
+     "proof": "intro C1 C2 C3 h; exact linearity_entangles C1 C2 C3 ⟨h.1, h.2.1⟩ h.2.2"},
+    {"name": "trilemma_logic", "type": "∀ (C1 C2 C3 : Prop), (C1 ∧ C3 → ¬C2) → ¬(C1 ∧ C2 ∧ C3)",
+     "proof": "intro C1 C2 C3 h hc; exact h ⟨hc.1, hc.2.2⟩ hc.2.1"},
+    {"name": "pair_exclusion", "type": "∀ (C1 C2 C3 : Prop), ¬(C1 ∧ C2 ∧ C3) → C1 ∧ C2 → ¬C3",
+     "proof": "intro C1 C2 C3 h hc12 hc3; exact h ⟨hc12.1, hc12.2, hc3⟩"},
+    {"name": "born_weight_sum", "type": "(1/2 : ℚ) + 1/2 = 1", "proof": "decide"},
+    {"name": "branches_pow10", "type": "(2^10 : ℕ) = 1024", "proof": "decide"},
+    {"name": "grw_macro_tau", "type": "(10^16 : ℚ) / 10^23 = 1 / 10^7", "proof": "decide"},
+    {"name": "grw_threshold_rate", "type": "(10^16 : ℚ) * (1 / 10^16) = 1", "proof": "decide"},
+    {"name": "branch_weight_times_count", "type": "1024 * (1/1024 : ℚ) = 1", "proof": "decide"},
+    {"name": "entangled_witness_minor", "type": "(1 : ℚ) * 0 - 1 * 1 ≠ 0", "proof": "decide"},
+    {"name": "fluidic_tie", "type": "(1/2 : ℚ) - 1/2 = 0", "proof": "decide"},
+    {"name": "branch_weight_sum_general", "type": "∀ (n : ℕ), (2^n : ℚ) * (1 / 2^n) = 1",
+     "proof": null,
+     "gap": "requires a nonzero-powers lemma (2^n ≠ 0, Mathlib pow_ne_zero/field_simp) or a core-level induction on Nat.pow; target: derive the general total-weight identity checked concretely by scripts/column3/04_branch_counting.py"},
+    {"name": "product_state_minors", "type": "∀ (a b c d x y u v : ℚ), a = x * u → b = x * v → c = y * u → d = y * v → a * d = b * c",
+     "proof": null,
+     "gap": "requires ring-style normalization (Mathlib ring) or a manual calc over mul_comm/mul_assoc/mul_left_comm; this is the symbolic form of the minor test in scripts/column3/01_trilemma_core.py"},
+    {"name": "everett_emergence_gap", "type": "∀ (C3 : Prop), C3",
+     "proof": null,
+     "gap": "DELIBERATE TARGET, EXPECTED UNPROVEN: recovering single outcomes (C3) from C1∧C2 alone (the Everett emergence-of-outcome step). Requires a decision-theoretic or self-locating argument (Deutsch-Wallace) that this framework does not contain; keeping it sorry is the formal record that the many-worlds door still owes an account of outcomes/probability"}
+  ]
+}

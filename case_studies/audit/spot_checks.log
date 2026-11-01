@@ -1,0 +1,14 @@
+PASS famous-constants: INTERVALS_OVERLAP=1
+PASS famous-constants: Z2_CONTAINED=1
+PASS famous-constants: TAXONOMY_VALID=1
+PASS maudlin-trilemma: PURITY=1/2
+PASS maudlin-trilemma: TAU_MACRO_S=1/10000000
+PASS maudlin-trilemma: BRANCHES_10=1024
+PASS maudlin-trilemma: DOORS=3
+PASS physical-isomorphisms: BREAKEVEN_N=55
+PASS physical-isomorphisms: BREAKEVEN_T=21
+PASS physical-isomorphisms: N_FOR_1PCT=2500
+PASS physical-isomorphisms: M_MIN=1500
+PASS speed-of-light: DEFINITIONAL=1
+PASS speed-of-light: INV_ALPHA_FLOOR=137
+PASS speed-of-light: REFUSAL_REGISTERED=1

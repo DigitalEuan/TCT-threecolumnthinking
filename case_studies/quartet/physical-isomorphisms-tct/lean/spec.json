@@ -1,0 +1,44 @@
+{
+  "module": "TCT",
+  "imports": [],
+  "definitions": [
+    {"name": "per_mac_vn", "type": "ℕ", "value": "12838"},
+    {"name": "cell_energy", "type": "ℕ", "value": "2"},
+    {"name": "conv_energy", "type": "ℕ", "value": "3700"},
+    {"name": "ops_fft", "type": "ℕ", "value": "51200"}
+  ],
+  "axioms": [
+    {"name": "horowitz_energies_empirical", "type": "Prop",
+     "note": "empirical (Horowitz, ISSCC 2014, 45nm-class): 32b FP multiply 3.7 pJ, 32b add 0.1 pJ, 32b SRAM read 5 pJ, 32b DRAM read 640 pJ"},
+    {"name": "crossbar_model_empirical", "type": "Prop",
+     "note": "empirical/illustrative: analog crossbar cell compute ~ 0.2 pJ per MAC-equivalent; DAC/ADC conversion ~ 370 pJ each (converter overhead is the known crossbar limitation)"},
+    {"name": "analog_offset_model_empirical", "type": "Prop",
+     "note": "illustrative: a physical analog integrator holds a fixed offset error floor of 1/1000"},
+    {"name": "noise_bernoulli_empirical", "type": "Prop",
+     "note": "empirical: a noisy physical bit source samples independent Bernoulli trials (stochastic computing premise)"},
+    {"name": "ising_relaxation_empirical", "type": "Prop",
+     "note": "empirical: a physical Ising system relaxes preferentially toward low-energy configurations (annealing premise)"},
+    {"name": "physical_church_turing", "type": "Prop",
+     "note": "premise (extended Church-Turing thesis): physical systems are efficiently simulable by digital computers, so physical isomorphisms change constants and latency, not complexity classes; the quantum case (BQP vs BPP) remains OPEN and is not claimed"}
+  ],
+  "lemmas": [
+    {"name": "ratio_vn_exact", "type": "(12838 : ℚ) / 2 = 6419", "proof": "decide"},
+    {"name": "ratio_inmem_exact", "type": "(138 : ℚ) / 2 = 69", "proof": "decide"},
+    {"name": "breakeven_55", "type": "(2*55^2 + 7400*55 < 138*55^2) ∧ (2*54^2 + 7400*54 ≥ 138*54^2)", "proof": "decide"},
+    {"name": "breakeven32_228", "type": "(8*228^2 + 29600*228 < 138*228^2) ∧ (8*227^2 + 29600*227 ≥ 138*227^2)", "proof": "decide"},
+    {"name": "fft_ratio", "type": "(1024^2 : ℚ) / (5*1024*10) = 512/25", "proof": "decide"},
+    {"name": "breakeven_t_21", "type": "(51200*21 ≥ 1048576 + 1025*21) ∧ (51200*20 < 1048576 + 1025*20)", "proof": "decide"},
+    {"name": "euler_error_10", "type": "(3*10 - 1 : ℚ) / (2*10^2) = 29/200", "proof": "decide"},
+    {"name": "m_min_1500", "type": "(1000*(3*1500 - 1) ≤ 2*1500^2) ∧ (1000*(3*1499 - 1) > 2*1499^2)", "proof": "decide"},
+    {"name": "chebyshev_2500", "type": "((1:ℚ)/4) / ((1/100)^2) = 2500", "proof": "decide"},
+    {"name": "break_even_symbolic", "type": "∀ (N : ℚ), 0 < N → (2*N^2 + 7400*N < 138*N^2 ↔ 7400 < 136*N)",
+     "proof": null,
+     "gap": "requires ring/field_simp/linarith (Mathlib) or a manual calc with positivity side-goals; symbolic form of the break-even computation verified concretely in scripts/column3/01_crossbar_break_even.py"},
+    {"name": "euler_error_general", "type": "∀ (M : ℕ), 0 < M → (1:ℚ) - ((M-1)*(2*M-1) / (2*M^2)) = (3*M-1) / (2*M^2)",
+     "proof": null,
+     "gap": "requires field_simp + ring with ℕ-to-ℚ cast bookkeeping (Mathlib) or a manual calc; general form of the error identity checked for M = 1..20 in scripts/column3/04_analog_ode.py"},
+    {"name": "stochastic_n_required", "type": "∀ (n : ℕ), (1:ℚ)/4/n ≤ (1/100)^2 → 2500 ≤ n",
+     "proof": null,
+     "gap": "requires linarith/field_simp over ℚ with positivity (Mathlib) or manual cross-multiplication; this is the MINIMALITY claim for the stream length (equality instance proved in chebyshev_2500)"}
+  ]
+}
