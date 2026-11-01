@@ -1,0 +1,39 @@
+# Skill v3 verification — live, 2026-11-01 (Lean 4.35.0 / Lake 5.0.0)
+
+## 1. Materialize the five bundled scripts from skill/SKILL_v3.md
+(see scripts/update_skill_v3.py; verify_column3/lean_ledger/cent_cost byte-identical to v2)
+
+## 2. Scaffold a fresh project with the v3 template AS SHIPPED (no workaround)
+Scaffolded v3_test: 2 proved, 1 sorry, 1 axioms, 0 defs; toolchain leanprover/lean4:stable
+import Lake
+open Lake DSL
+package tct_v3 where
+  moreServerArgs := #["-DwarningAsError=false"]
+@[default_target]
+lean_lib TCT where
+  globs := #[.one `TCT.Basic]
+info: tct_v3: no previous manifest, creating one from scratch
+info: toolchain not updated; already up-to-date
+⚠ [2/3] Built TCT.Basic (223ms)
+warning: TCT/Basic.lean:12:8: declaration uses `sorry`
+Build completed successfully (3 jobs).
+build exit: 0
+
+## 3. lean_probe.py — live tactic landscape vs the 4.35.0 baseline
+probing: Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+  decide_nat           AVAILABLE (baseline yes) AGREE
+  rfl_definitional     AVAILABLE (baseline yes) AGREE
+  omega_int_mod        AVAILABLE (baseline yes) AGREE
+  simp                 AVAILABLE (baseline yes) AGREE
+  Q_notation           absent    (baseline no ) AGREE
+  rat_decide           absent    (baseline no ) AGREE
+  rat_rfl              absent    (baseline no ) AGREE
+  rat_native_decide    AVAILABLE (baseline yes) AGREE
+  norm_num             absent    (baseline no ) AGREE
+  ring                 absent    (baseline no ) AGREE
+  nat_factorial        absent    (baseline no ) AGREE
+  real_pi              absent    (baseline no ) AGREE
+  nat_xor_variable     absent    (baseline no ) AGREE
+13 agree with the 4.35.0 baseline, 0 differ - trust the probe.
+Kernel-checked rationals: cross-multiply into Nat (S8); native_decide is compiler-trusted.
+probe exit: 0
